@@ -109,7 +109,7 @@ public class HistoricoVacinasController {
 		historico = c;
 		
 	}
-	//FacesContext context = FacesContext.getCurrentInstance() ;
-	//Usuario usuarioLogado = (Usuario) context.getExternalContext().getSessionMap().get("usuarioLogado");
-	//Integer usuario_id = usuarioLogado.getId();
+	FacesContext context = FacesContext.getCurrentInstance() ;
+	Usuario usuarioLogado = (Usuario) context.getExternalContext().getSessionMap().get("usuarioLogado");
+	Integer usuario_id = usuarioLogado.getId();
 }
