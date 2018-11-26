@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	  
+	  <ui:composition template="_template.xhtml">
+	  	<ui:define name="titulo_pagina">Usuario</ui:define>
+	  
+<ui:define name="conteudo">
+
+<div class="container">
+	<div class ="page-header">
+	
+	<br></br>
+	<h1>Cadastrar Usuario</h1>
+	
+	</div>
+	
+<h:form>
+	<h:messages id ="msg"/>
+	
+	<div class="form-group">
+		
+		<h:outputText value="Nome" for="nome"/>
+		<h:inputText id="nome" class ="form-control" value="#{usuarioController.usuario.nome}" required="true" requiredMessage="Nome obrigatório!"/>
+		
+		<br></br>
+		
+		<h:commandButton type="submit" class="btn btn-success btn-block" value="Cadastrar" action="#{usuarioController.gravar()}"/>		
+	
+	</div>	
+</h:form>
+
+
+<br></br><br></br>
+
+</div>
+</ui:define>
+</ui:composition>
+</html>

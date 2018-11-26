@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+	<ui:composition template="_template3.xhtml">
+	<ui:define name="titulo_pagina">Historico de Vacinas</ui:define>
+	
+<ui:define name="conteudo">
+	    
+<div class="container">
+<div class = "row">
+	<div class="page-header">
+	<br></br>
+		  <h1 align="center">Histórico de Vacinas</h1>
+	</div>
+		
+ <h:form>
+	<h:messages id ="msg" class="alert alert-danger alerta"/>
+	
+		 <div class="row">
+		 <div class="form-group col-md-4">
+		<h:outputText value="Data" for="data" />
+		<h:inputText id="data" class="form-control" value ="#{historicoVacinasController.historico.data.time}" required="true" requiredMessage="Data obrigatória!">
+			<f:passThroughAttribute name="type" value="date"/>
+			<f:convertDateTime pattern = "yyyy-MM-dd" timeZone = "America/Sao_Paulo"/>
+		    <f:ajax event ="blur" render = "msg"/>
+		</h:inputText>
+		</div>
+	
+    
+    <div class="form-group col-md-4">
+    <h:outputText value="Vacina" for="vacina" />
+				<h:selectOneMenu id="vacina" class="form-control" value="#{historicoVacinasController.vacinaId}" required ="true" requiredMessage = "Vacina Obrigatorio">
+					<f:selectItem itemLabel="Selecionar" noSelectionOption="true"/>
+					<f:selectItems value="#{historicoVacinasController.todosVacinas}" var="vacina" itemLabel="#{vacina.nome}" itemValue="#{vacina.id}"/>
+				</h:selectOneMenu>
+    </div>
+    <div class="form-group col-md-4">
+   	 <h:outputText value="Notas" for="notas" />
+			<h:inputText id="notas" class="form-control" value="#{historicoVacinasController.notas}"/>
+    
+    </div>
+     <div class="form-group col-md-4">
+     <br></br>
+    	<h:commandButton type="submit" class="btn btn-danger" value="Adicionar Vacina" action="#{historicoVacinasController.gravarItem}">
+				<f:ajax execute ="vacina notas" render = "msg vacina notas tabelaItens"/>
+		</h:commandButton>
+    </div>
+    </div>
+    
+    <h:dataTable class="table table-hover" value="#{historicoVacinasController.itensDoHistorico}" var="item" id ="tabelaItens">
+				<h:column>
+					<f:facet name="header">Exame</f:facet>
+					<h:outputText value="#{item.vacina.nome}"/>
+				</h:column>
+						
+				<h:column>
+					<f:facet name="header">Notas</f:facet>
+					<h:outputText value="#{item.notas}"/>
+				</h:column>
+						
+				<h:column>
+					<f:facet name="header">Remover</f:facet>
+					<h:commandLink action="#{historicoVacinasController.removerItem(item)}" immediate="true">
+					<img src="https://cdn4.iconfinder.com/data/icons/basic-ui-elements/700/010_x-512.png" class = "imagem"></img>
+					</h:commandLink>				
+				</h:column>
+				
+			</h:dataTable>
+
+     <div class="form-group">
+        <h:commandButton type="submit" class="btn btn-warning" value="Cadastrar" action="#{historicoVacinasController.gravar}">
+        <f:ajax execute ="@form" render ="@form :formHistoricoVacinas:tabelaHistorico msg"/>
+		</h:commandButton>
+	</div>				
+</h:form>
+</div>      
+		    
+</div>
+</ui:define>
+</ui:composition>
+</html>

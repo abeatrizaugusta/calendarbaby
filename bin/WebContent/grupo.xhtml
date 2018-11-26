@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+	<ui:composition template="_template.xhtml">
+	<ui:define name="titulo_pagina">Grupo</ui:define>
+		
+<ui:define name="conteudo">
+	<div class="page-header">
+		<br></br>
+		<h1>Cadastrar Grupos</h1>
+	</div>
+
+<h:form>
+	<h:messages id ="msg" class="alert alert-danger alerta"/>
+	
+	<div class="form-group">
+	<div class ="form-row">
+	
+	<div class= "form-group col-md-12">
+	
+	<h:outputText value="Nome" for="nome" />
+	<h:inputText id="nome" class="form-control" value="#{grupoController.grupo.nome}" requiredMessage="Nome obrigatório">				
+		<f:ajax event ="blur" render = "msg"/>
+	</h:inputText>
+	</div>
+		
+		<div class= "form-group col-md-6">
+		<h:outputText value="Funcionalidade" for="funcionalidade" />
+			<h:selectOneMenu id="funcionalidade" class="form-control" value="#{grupoController.funcionalidadeId}">
+				<f:selectItem itemLabel="Selecionar" noSelectionOption="true" />
+				<f:selectItems value="#{grupoController.todasFuncionalidades}" var="funcionalidade" itemLabel="#{funcionalidade.nome}" itemValue="#{funcionalidade.id}" />
+			</h:selectOneMenu>
+		</div>
+		
+		<div class= "form-group col-md-6">
+		<br></br>
+		<h:commandButton type="submit" class="btn btn-danger btn-block" value="Adicionar Funcionalidade" action = "#{grupoController.gravarFuncionalidade}" />
+		</div>
+		
+		<div class= "form-group col-md-6">
+		
+		<h:dataTable class="table table-hover" value = "#{grupoController.funcionalidadesDoGrupo}" var = "funcionalidade">
+				
+				<h:column>
+						<f:facet name="header">Nome</f:facet>
+						<h:outputText value="#{funcionalidade.nome}"/>
+				</h:column>
+			
+				<h:column>
+						<f:facet name="header">Remover</f:facet>
+							<h:commandLink action ="#{grupoController.remover(funcionalidade)}">
+							<img src="https://cdn4.iconfinder.com/data/icons/basic-ui-elements/700/010_x-512.png" class = "imagem"></img>
+							</h:commandLink>
+				</h:column>
+				
+				<br></br>
+		</h:dataTable>
+				</div>
+		
+		
+		</div>
+		
+		<div class= "form-group col-md-12">
+		
+		<h:commandButton type="submit" class="btn btn-success btn-block" value="Cadastrar Grupo" action="#{grupoController.gravar}" />
+</div>	
+</div>
+</h:form>
+	
+	<h:form>
+		<h:dataTable class="table table-hover" value="#{grupoController.todosGrupos}" var="grupo">
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText value="#{grupo.nome}"/>
+			</h:column>
+	<h:column>
+				<f:facet name = "header"> Alterar </f:facet>
+				<h:commandLink action ="#{grupoController.carregar(grupo)}">
+				<img src= "http://www.bravusconta.com.br/ESW/Images/icon-firefox-sync.png" class ="imagem"></img>
+				</h:commandLink>
+		
+	</h:column>
+	<h:column>
+				<f:facet name = "header"> Remover </f:facet>
+				<h:commandLink action ="#{grupoController.remover(grupo)}">
+				<img src="https://cdn4.iconfinder.com/data/icons/basic-ui-elements/700/010_x-512.png" class = "imagem"></img>
+				</h:commandLink>
+	</h:column>
+		</h:dataTable>
+	</h:form>
+</ui:define>
+</ui:composition>
+</html>

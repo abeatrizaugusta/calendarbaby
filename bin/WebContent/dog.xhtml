@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:h="http://xmlns.jcp.org/jsf/html"
+ xmlns:f="http://xmlns.jcp.org/jsf/core"
+ xmlns:p="http://primefaces.org/ui"
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="_template.xhtml"
+>
+
+	<ui:define name="conteudo">
+	
+		<h:form>
+			<br></br>
+			
+			<fieldset>
+			<legend>Dados do Dog</legend>
+			<h:panelGrid columns="2">
+				<h:outputText value="Nome" for="nome"/>
+				<h:inputText id="nome" value="#{dogController.dog.nome}"/>
+					
+				<h:outputText value="Raca" for="raca"/>
+				<h:inputText id="raca" value="#{dogController.dog.raca}"/>
+					
+				<h:outputText value="Sexo" for="sexo"/>
+				<h:inputText id="sexo" value="#{dogController.dog.sexo}"/>
+					
+				<h:outputText value="Nascimento" for="nascimento"/>
+				<h:inputText id="nascimento" value="#{dogController.dog.nascimento}"/>
+				
+				<h:outputText value="Proprietario" for="proprietario"/>
+				<h:inputText id="proprietario" value="#{dogController.dog.proprietario}"/>
+				
+				<h:outputText value="Endereco" for="endereco"/>
+				<h:inputText id="endereco" value="#{dogController.dog.endereco}"/>
+				
+				<h:outputText value="Cidade" for="cidade"/>
+				<h:inputText id="cidade" value="#{dogController.dog.cidade}"/>
+				
+				<h:outputText value="Telefone" for="telefone"/>
+				<h:inputText id="telefone" value="#{dogController.dog.telefone}"/>
+					
+				<h:commandButton value="Gravar" action="#{dogController.gravar}"/>
+				
+			</h:panelGrid>
+			</fieldset>
+		</h:form>
+		<h:form>
+		<h:dataTable value="#{dogController.todosDogs}" var="dog">
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText value="#{dog.nome}"/>
+			</h:column>
+			<h:column>	
+				<f:facet name="header">Raca</f:facet>
+				<h:outputText value="#{dog.raca}"/>
+			</h:column>
+			<h:column>	
+				<f:facet name="header">Sexo</f:facet>
+				<h:outputText value="#{dog.sexo}"/>
+			</h:column>
+			<h:column>	
+				<f:facet name="header">Nascimento</f:facet>
+				<h:outputText value="#{dog.nascimento}"/>
+			</h:column>
+			<h:column>	
+				<f:facet name="header">Proprietario</f:facet>
+				<h:outputText value="#{dog.proprietario}"/>
+			</h:column>
+			<h:column>	
+				<f:facet name="header">Endereco</f:facet>
+				<h:outputText value="#{dog.endereco}"/>
+			</h:column>
+			<h:column>	
+				<f:facet name="header">Cidade</f:facet>
+				<h:outputText value="#{dog.cidade}"/>
+			</h:column>
+			<h:column>	
+				<f:facet name="header">Telefone</f:facet>
+				<h:outputText value="#{dog.telefone}"/>
+			</h:column>
+			<h:column>	
+					<f:facet name="header">Remover</f:facet>
+					<h:commandLink value="remove" action="#{dogController.remover(dog)}"/>
+				</h:column>
+			<h:column>
+				<f:facet name="header">Atualizar</f:facet>
+				<h:commandLink value="Atualizar"
+					action="#{dogController.carregar(dog)}" />
+			</h:column>
+		</h:dataTable>
+		</h:form>
+	</ui:define>
+	</ui:composition>
+</html>

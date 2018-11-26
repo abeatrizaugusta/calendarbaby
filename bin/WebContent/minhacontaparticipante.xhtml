@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+	
+	<ui:composition template="_template3.xhtml">
+
+		<ui:define name="titulo">
+			<title>Minha Conta</title>
+		</ui:define>
+		
+		<ui:define name="conteudo">
+	      <div class="container">
+	      
+	        <div class="page-header">
+	          <br></br>
+	          <h1>Minha conta</h1>
+	          <h:messages id ="msg" class="fonteSansHelvetica"/>
+	        </div>
+	
+	        <div class="row">
+	          <div class="col-sm-4">
+	            <h:form>
+	            
+	            <h4>Nome: <h:outputText value= "#{usuarioLogado.nome}"/></h4>  
+	           	<h4>Data de Nascimento: <h:outputText value= "#{usuarioLogado.nascimento.time}">
+	           		<f:convertDateTime pattern = "dd/MM/yyyy" timeZone = "America/Sao_Paulo"/>
+				</h:outputText></h4>
+				<h4>Nome do Bebê: <h:outputText value= "#{usuarioLogado.nomebebe}"/></h4>  
+	           	<h4>Data de Nascimento do Bebê: <h:outputText value= "#{usuarioLogado.nascimentobebe.time}">
+	           		<f:convertDateTime pattern = "dd/MM/yyyy" timeZone = "America/Sao_Paulo"/>
+				</h:outputText></h4>
+				<h4>CPF: <h:outputText value= "#{usuarioLogado.cpf}"/></h4>
+				<h4>Email: <h:outputText value= "#{usuarioLogado.email}"/></h4> 
+				<h4>Telefone: <h:outputText value= "#{usuarioLogado.telefone}"/></h4>  
+				<br></br>
+				<h:commandButton type="submit" class="btn btn-danger btn-block" value = "Alterar Cadastro" action = "participantealterar?faces-redirect=true" immediate = "true"></h:commandButton>	                    
+	          
+	           
+	
+				 
+</h:form>
+				
+	</div>
+			
+ </div>
+ </div>
+	    
+	
+	    </ui:define>
+		
+	</ui:composition>	    
+		  
+</html>
