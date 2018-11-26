@@ -35,9 +35,10 @@ width:25px;
     
   
 </style>
-		
  </h:head>
 	<h:body>
+	        <h:form>	
+	
 		 <nav class="navbar navbar-default cabecalho" style="background-color: #ffcccc; border-color: #ffcccc">
       <div class="container">
         
@@ -77,6 +78,8 @@ width:25px;
               </ul>
 
             </li>
+            <li> <h:commandLink action="#{loginController.deslogar}"><b>Sair</b> </h:commandLink></li>
+            
             
           </ul>
 
@@ -105,7 +108,7 @@ width:25px;
 		      <script src="resources/js/bootstrap.min.js"></script>
 		      <script src="resources/js/popper.min.js"></script>
 		      <script src="resources/js/npm.js"></script>		
-		
+	</h:form>
 	</h:body>
 	
 
